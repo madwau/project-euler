@@ -30,9 +30,9 @@ public class Problem7
 				count++;
 			}
 			
-			candidate++;
+			candidate += 2;
 		}
 		
-		System.out.println(candidate-1);
+		System.out.println(candidate-2);
 	}
 }
