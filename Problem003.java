@@ -1,6 +1,6 @@
 import java.math.BigInteger;
 
-public class Problem3
+public class Problem003
 {
 	public static void main(String[] args)
 	{
