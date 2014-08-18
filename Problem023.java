@@ -1,31 +1,35 @@
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Scanner;
+import java.util.HashSet;
 
-public class Problem022
+public class Problem023
 {
-	public static void main(String[] args) throws FileNotFoundException
+	public static void main(String[] args)
 	{
-		ArrayList<String> names = new ArrayList<String>();
-		Scanner in = new Scanner(new FileReader("names.txt")).useDelimiter(",");
+		ArrayList<Integer> list = new ArrayList<Integer>();
+		HashSet<Integer> sums = new HashSet<Integer>();
 		
-		while(in.hasNext()) names.add(in.next());
-		
-		Collections.sort(names);
-		
-		int total = 0;
-		int n = 1;
-		
-		for(String s : names)
+		for(int n = 1; n <= 28123; n++)
 		{
-			for(int i = 1; i < s.length()-1; i++)
+			int sum = 0;
+			
+			for(int i = 1; i*2 <= n; i++)
 			{
-				total += n * (s.charAt(i) - 'A' + 1);
+				if(n % i == 0) sum += i;
 			}
 			
-			n++;
+			if(sum > n)
+			{
+				list.add(n);
+				
+				for(int l : list) sums.add(l + n);
+			}
+		}
+		
+		int total = 0;
+		
+		for(int n = 1; n <= 28123; n++)
+		{
+			if(!sums.contains(n)) total += n;
 		}
 		
 		System.out.println(total);
