@@ -6,7 +6,6 @@ import java.util.Scanner;
 
 public class Problem022
 {
-	@SuppressWarnings("resource")
 	public static void main(String[] args) throws FileNotFoundException
 	{
 		ArrayList<String> names = new ArrayList<String>();
