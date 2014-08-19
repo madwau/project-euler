@@ -19,7 +19,7 @@ public class Problem031
 		
 		// 1st: Include current coin and leave remainingCoins unaltered
 		// 2nd: Stop including current coin and move to next one
-		return	num(sum + remainingCoins.get(0), max, remainingCoins) +
-				num(sum, max, remainingCoins.subList(1, remainingCoins.size()));
+		return num(sum + remainingCoins.get(0), max, remainingCoins) +
+		       num(sum, max, remainingCoins.subList(1, remainingCoins.size()));
 	}
 }
