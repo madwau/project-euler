@@ -15,7 +15,7 @@ public class Problem026 {
                 boolean flag = true;
 
                 for (int i = 2; length * i <= s.length(); i++) {
-                    if (!s.substring(0, length).equals(s.substring(length * (i - 1), length * i))) {
+                    if (!s.substring(0, length).equals(s.substring(length*(i-1), length*i))) {
                         flag = false;
                         break;
                     }

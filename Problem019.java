@@ -7,8 +7,9 @@ public class Problem019 {
 
         int count = 0;
 
-        while (c.get(Calendar.YEAR) < 2001) {
-            if (c.get(Calendar.DAY_OF_MONTH) == 1 && c.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY) {
+        while(c.get(Calendar.YEAR) < 2001) {
+            if (c.get(Calendar.DAY_OF_MONTH) == 1 &&
+                c.get(Calendar.DAY_OF_WEEK)  == Calendar.SUNDAY) {
                 count++;
             }
 

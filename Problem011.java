@@ -1,6 +1,5 @@
 import java.util.Collections;
 import java.util.HashSet;
-import java.util.Set;
 
 public class Problem011 {
     public static void main(String[] args) {
@@ -10,17 +9,14 @@ public class Problem011 {
 
         for (int i = 0; i < 20; i++) {
             for (int j = 0; j <= 16; j++) {
-                Set<Integer> prod = new HashSet<Integer>();
-                prod.add(max);
+                HashSet<Integer> prod = new HashSet<Integer>(); prod.add(max);
 
-                prod.add(g[i][j] * g[i][j + 1] * g[i][j + 2] * g[i][j + 3]); // horizontal
-                prod.add(g[j][i] * g[j + 1][i] * g[j + 2][i] * g[j + 3][i]); // vertical
+                prod.add(g[i][j] * g[i][j+1] * g[i][j+2] * g[i][j+3]); // horizontal
+                prod.add(g[j][i] * g[j+1][i] * g[j+2][i] * g[j+3][i]); // vertical
 
                 if (i <= 16) {
-                    prod.add(g[i][j] * g[i + 1][j + 1] * g[i + 2][j + 2] * g[i + 3][j + 3]); // diagona
-                                                                                             // (desc)
-                    prod.add(g[i][j + 3] * g[i + 1][j + 2] * g[i + 2][j + 1] * g[i + 3][j]); // diagonal
-                                                                                             // (asc)
+                    prod.add(g[i][j] * g[i+1][j+1] * g[i+2][j+2] * g[i+3][j+3]); // diagonal (desc)
+                    prod.add(g[i][j+3] * g[i+1][j+2] * g[i+2][j+1] * g[i+3][j]); // diagonal (asc)
                 }
 
                 max = Collections.max(prod);

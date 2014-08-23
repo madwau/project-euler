@@ -9,9 +9,8 @@ public class Problem021 {
         for (int n = 1; n < 10000; n++) {
             int sum = 0;
 
-            for (int i = 1; i * 2 <= n; i++) {
-                if (n % i == 0)
-                    sum += i;
+            for (int i = 1; i*2 <= n; i++) {
+                    sum += (n % i == 0) ? i : 0;
             }
 
             if (cache.containsKey(sum) && cache.get(sum) == n) {
