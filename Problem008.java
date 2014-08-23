@@ -4,15 +4,14 @@ public class Problem008 {
 
         long max = 0;
 
-        for (int i = 0; i <= seq.length() - 13; i++) {
+        for (int i = 0; i <= seq.length()-13; i++) {
             long product = 1;
 
             for (int j = 0; j < 13 && product != 0; j++) {
-                product *= Integer.parseInt(seq.substring(i + j, i + j + 1));
+                product *= Integer.parseInt(seq.substring(i+j, i+j+1));
             }
 
-            if (product > max)
-                max = product;
+            max = Math.max(product, max);
         }
 
         System.out.println(max);

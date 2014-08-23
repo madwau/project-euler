@@ -1,15 +1,15 @@
 public class Problem005 {
     public static void main(String[] args) {
         boolean found = false;
-        int min = 20;
+        int product = 2*3*5*7*11*13*17*19, min = product;
 
         while (!found) {
             found = true;
 
-            for (int i = 2; i <= 20; i++) {
+            for (int i = 4; i <= 20; i++) {
                 if (min % i != 0) {
                     found = false;
-                    min++;
+                    min += product;
                     break;
                 }
             }
