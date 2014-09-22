@@ -9,7 +9,7 @@ public class Problem022 {
         int total = 0, n = 1;
 
         for (String s : names) {
-            for (int i = 1; i < s.length()-1; i++) {
+            for (int i = 0; i < s.length(); i++) {
                 total += n * (s.charAt(i) - 'A' + 1);
             }
 
