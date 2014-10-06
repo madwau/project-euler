@@ -1,4 +1,4 @@
-module Helper (fibs, primes, isPrime, primefactors, isPalindrome, divBy, divisors, properdivisors, trianglenumbers, collatz, fac, binominal, select, digits, split, indexOfMax, isPandigital, isCircularPrime, toBinary) where
+module Helper (fibs, primes, isPrime, primefactors, isPalindrome, divBy, divisors, properdivisors, trianglenumbers, collatz, fac, binominal, select, digits, split, indexOfMax, isPandigital, isCircularPrime, toBinary, isInt) where
 
 import Data.Char (digitToInt, intToDigit, isAlphaNum)
 import Data.List.Split (wordsBy)
@@ -11,7 +11,8 @@ import Numeric (showIntAtBase)
 fibs = 1 : 1 : zipWith (+) fibs (tail fibs)
 
 -- infinite list of prime numbers using the sieve of Eratosthenes
-primes = sieve [2..] where sieve (x:xs) = x : sieve [p | p <- xs, mod p x /= 0]
+-- primes = sieve [2..] where sieve (x:xs) = x : sieve [p | p <- xs, mod p x /= 0]
+primes = Primes.primes
 
 -- true iff the number p is a prime number
 -- isPrime p = if p < 2 then False else (last $ takeWhile (<=p) primes) == p
@@ -60,7 +61,7 @@ split s = map (filter isAlphaNum) $ wordsBy (==',') s
 indexOfMax list = fst . last . sortBy (compare `on` snd) $ zip [1..] list
 
 -- true iff the number n (in string format) is pandigital regarding the specified digits
-isPandigital n digits = (sort n) == (sort $ concatMap show digits)
+isPandigital digits n = (sort n) == (sort $ concatMap show digits)
 
 -- list of rotations of a number n
 rotations n = map read [drop i s ++ take i s | i <- [0..length s - 1]] where s = show n
@@ -70,3 +71,6 @@ isCircularPrime n = all isPrime (rotations n)
 
 -- converts an Integer n to a string in binary representation
 toBinary n = showIntAtBase 2 intToDigit n ""
+
+-- true iff the value x is an Integer
+isInt x = x == fromInteger (round x)
