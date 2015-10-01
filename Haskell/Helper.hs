@@ -1,9 +1,10 @@
-module Helper (fibs, primes, isPrime, primefactors, isPalindrome, divBy, divisors, properdivisors, trianglenumbers, collatz, fac, binominal, select, digits, split, indexOfMax, isPandigital, isCircularPrime, toBinary, isInt) where
+module Helper where
 
-import Data.Char (digitToInt, intToDigit, isAlphaNum)
-import Data.List.Split (wordsBy)
+import Control.Monad (filterM)
+import Data.Char (digitToInt, intToDigit, isAlphaNum, ord)
 import Data.Function (on)
 import Data.List (sort, sortBy)
+import Data.List.Split (wordsBy)
 import qualified Data.Numbers.Primes as Primes
 import Numeric (showIntAtBase)
 
@@ -33,8 +34,11 @@ divBy n (x:xs) = mod n x == 0 && divBy n xs
 divisors n = [d | d <- [1..n], mod n d == 0]
 properdivisors n = filter ((==0) . mod n) [1..div n 2]
 
--- infinite list of trianfle numbers
+-- infinite list of triangle numbers
 trianglenumbers = [sum [1..n] | n <- [1..]]
+
+-- true iff n is a triangle number
+isTriangleNumber n = n == (last $ takeWhile (<=n) trianglenumbers)
 
 -- collatz sequence starting with n
 collatz 1 = [1]
@@ -60,8 +64,11 @@ split s = map (filter isAlphaNum) $ wordsBy (==',') s
 -- index of the maximum in a list
 indexOfMax list = fst . last . sortBy (compare `on` snd) $ zip [1..] list
 
--- true iff the number n (in string format) is pandigital regarding the specified digits
-isPandigital digits n = (sort n) == (sort $ concatMap show digits)
+-- true iff the number n is pandigital regarding the specified digits
+isPandigital digits n = (sort $ show n) == (sort $ concatMap show digits)
+
+-- true iff the number n is pandigital, i.e. containing the digits [1..length $ show n] exactly once each
+isGenericPandigital n = (sort $ show n) == concatMap show [1..length $ show n]
 
 -- list of rotations of a number n
 rotations n = map read [drop i s ++ take i s | i <- [0..length s - 1]] where s = show n
@@ -74,3 +81,15 @@ toBinary n = showIntAtBase 2 intToDigit n ""
 
 -- true iff the value x is an Integer
 isInt x = x == fromInteger (round x)
+
+-- position of the uppercase letter in the alphabet
+posAlphabet c = toInteger $ ord c - ord 'A' + 1
+
+-- infinite list of pentagonal numbers
+pentagonnumbers = map (\n -> n*(3*n-1) `div` 2) [1..]
+
+-- true iff n is a pentagonal number
+isPentagonNumber n = n == (last $ takeWhile (<=n) pentagonnumbers)
+
+-- powerset of a set
+powerset = filterM (const [True, False])
